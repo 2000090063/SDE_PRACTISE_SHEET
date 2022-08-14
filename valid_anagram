@@ -1,0 +1,27 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+         if( (s.length()!=t.length()) || (s.length()<1) || (t.length()<1)){
+            return false;
+        }
+        
+        else{
+		// There are only 26 letters in English Alphabet, so instead of using HashMap, we can use array of size 26
+            int[] charCount = new int[26];
+			// For the first String, we count frequency of letters in a String
+            for(char c : s.toCharArray()){
+              charCount[c -'a']+=1;
+            }
+			// For the second String we deduct from the frequency
+            for(char c : t.toCharArray()){
+			//We check if freq  == 0, if it is 0 , then return false because it means that the frequency for particular character is higher in second String
+                if(charCount[c -'a'] == 0) {
+                    return false;
+                }
+                else{
+                    charCount[c - 'a']-=1;
+                }
+            }
+            return true;
+    }
+    }
+}
